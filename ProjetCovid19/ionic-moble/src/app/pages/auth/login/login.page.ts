@@ -13,7 +13,7 @@ import { AlertService } from 'src/app/services/alert.service';
 export class LoginPage implements OnInit {
 
   public error = null;
-
+  hasInfo = 'false';
   constructor(
     private modalController: ModalController,
     private authService: AuthService,
@@ -51,9 +51,25 @@ export class LoginPage implements OnInit {
       },
       () => {
         this.dismissLogin();
-        this.navCtrl.navigateRoot('/dashboard');
+
       }
     );
+    
+    this.authService.hasInfos(this.authService.userValue.id).subscribe(
+      data => {
+        this.hasInfo = data['hasInfos'];
+        if(this.hasInfo=='true')
+          this.navCtrl.navigateRoot('/dashboard');
+        if(this.hasInfo=='false')
+          {
+            this.navCtrl.navigateRoot('/infos');
+          }
+      },
+      err => {
+        console.log(err);
+        
+      }
+    )    
   }
 
   // ---- Affichage du message d'erreur ----

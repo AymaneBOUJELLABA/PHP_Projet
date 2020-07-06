@@ -55,6 +55,7 @@ Route::delete('question/{id}', 'QuestionController@delete');
 //les routes pour les informations de chaque utilisateur
 Route::get('infos', 'InfoController@index');
 Route::get('info/{id}', 'InfoController@show');
+Route::get('info/verify/{id}', 'InfoController@hasInfos');
 Route::post('info', 'InfoController@store');
 Route::post('info/{id}', 'InfoController@storeid');
 Route::put('info/{id}', 'InfoController@update');

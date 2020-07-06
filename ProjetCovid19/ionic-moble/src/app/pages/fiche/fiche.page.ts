@@ -17,7 +17,7 @@ export class FichePage implements OnInit {
   tousse: any;
   fiche = new Fiche();
   user : User;
-  hasQuestion = true;
+  hasQuestion = '';
   constructor(
     // private modalController: ModalController,
     private authService: AuthService,
@@ -35,19 +35,25 @@ export class FichePage implements OnInit {
 
   ngOnInit()
   {
+    this.UserhasQuestion();
   }
   UserhasQuestion()
   {
     let bool:boolean;
     this.authService.hasQuestion(this.user.id).subscribe(
       data => {
+        console.log(data);
         this.hasQuestion = data['hasQuestion'];
+        if(this.hasQuestion == 'true')
+        {
+          this.alertService.presentToast("Vous avez dèja envoyé votre demande");
+          this.navCtrl.navigateRoot('/result');
+        }
       },
       err => {
         console.log(err);
       }
     )
-    console.log(this.hasQuestion);
   }
   test(value) {
     this.fiche.test = value.detail.value.toString();

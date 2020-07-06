@@ -1,3 +1,4 @@
+import { AlertService } from 'src/app/services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, MenuController, NavController } from '@ionic/angular';
 import { RegisterPage } from '../auth/register/register.page';
@@ -11,10 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LandingPage implements OnInit {
 
+  IsConnected = false;
   constructor(
     private modalController: ModalController,
     private menu: MenuController,
     private authService: AuthService,
+    private alertService: AlertService,
     private navCtrl: NavController,
   ) { 
       this.menu.enable(false);
@@ -28,10 +31,22 @@ export class LandingPage implements OnInit {
       });
     }
 
-    ngOnInit() {
-      
+    ngOnInit()
+    {
+      this.UserIsConnected();
     }
 
+
+    UserIsConnected()
+    {
+      if(this.authService.userValue)
+      {
+        this.IsConnected = true;
+        this.alertService.presentToast("Vous etes deja Connecté !");
+        this.navCtrl.navigateRoot('/dashboard');
+      }
+
+    }
     async register() {
       const registerModal = await this.modalController.create({
         component: RegisterPage

@@ -129,6 +129,11 @@ export class AuthService {
   {
     return this.http.get(this.env.API_URL + `question/verify/${user_id}`);
   }
+
+  hasInfos(user_id)
+  {
+    return this.http.get(this.env.API_URL + `info/verify/${user_id}`);
+  }
   logout()
   {
     

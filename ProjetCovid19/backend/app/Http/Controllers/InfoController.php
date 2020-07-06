@@ -18,6 +18,15 @@ class InfoController extends Controller
         return User::find($id)->info;
     }
 
+    public function hasInfos($id)
+    {
+        $infos = User::find($id)->info;
+        
+        if($infos)
+            return response(['hasInfos' => "true"]);
+        else
+            return response(['hasInfos' => "false"]);
+    }
     public function store(Request $request)
     {
         $user = $request->user();

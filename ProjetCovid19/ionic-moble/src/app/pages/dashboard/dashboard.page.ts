@@ -1,5 +1,6 @@
+import { AlertService } from 'src/app/services/alert.service';
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 
@@ -13,43 +14,38 @@ export class DashboardPage implements OnInit {
   user: User;
   nbreFiche: any;
   reponsesFiche = new Array();
-  // test = new Array<number>();
+  hasInfo = '';
 
-  constructor(private menu: MenuController, private authService: AuthService) { 
+  constructor(private menu: MenuController,
+              private authService: AuthService,
+              private navCtrl: NavController,
+              private alertService: AlertService,
+              ) { 
     this.menu.enable(true);
-    // delete this.nbreFiche;
-    // this.reponsesFiche.length = 0;
+
   }
 
-  // userReponse() {
-  //   this.authService.userReponse(this.authService.getUser().id).subscribe(
-  //     data => {
-  //       console.log("Les infos passés !");
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   )
-  // }
 
   ngOnInit() {
-    // delete this.nbreFiche;
-    // this.reponsesFiche.length = 0;
 
     this.user = this.authService.getUser();
-    // this.userReponse();
-    // this.nbreFiche = this.authService.getNbreFiche();
-    // this.reponsesFiche = this.authService.getReponsesUser();
-    // alert(this.nbreFiche[0]['nbre']);
-    // this.test = this.nbreFiche[0]['nbre'];
+
+    this.authService.hasInfos(this.authService.userValue.id).subscribe(
+      data => {
+        this.hasInfo = data['hasInfos'];
+        if(this.hasInfo=='true')
+          this.navCtrl.navigateRoot('/dashboard');
+        if(this.hasInfo=='false')
+          {
+            this.alertService.presentToast("Vous n'avez pas saisie vos informations");
+            this.navCtrl.navigateRoot('/infos');
+          }
+      },
+      err => {
+        console.log(err);
+        
+      }
+    )  
+   
   }
-
-  // ionViewWillEnter() {
-  //   this.authService.user().subscribe(
-  //     user => {
-  //       this.user = user;
-  //     }
-  //   );
-  // }
-
 }

@@ -51,7 +51,6 @@ export class RegisterPage implements OnInit {
           },
           () => {
             this.dismissRegister();
-            this.navCtrl.navigateRoot('/infos');
           }
         );
         this.alertService.presentToast("Bienvenue");
@@ -64,6 +63,7 @@ export class RegisterPage implements OnInit {
         
       }
     );
+    this.navCtrl.navigateRoot('/infos');
   }
   // ---- Affichage du message d'erreur ----
   handleError(error) {
