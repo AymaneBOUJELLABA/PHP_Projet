@@ -1,0 +1,50 @@
+<div class="card">
+    <h4 class="card-header">Liste des demandes traités</h4>
+    <div class="card-body">
+        <table *ngIf="demands.length>0" class="table table-striped">
+            <thead class="text-center">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">testé pour Covid19</th>
+                    <th scope="col">Isolement médical</th>
+                    <th scope="col">Situations vécu</th>
+                    <th scope="col">Symptômes</th>
+                    <th scope="col">Temps de toussement</th>
+                    <th scope="col">Résultat du Docteur</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor='let demand of demands'>
+                    <td class="text-left">
+                        {{ demand.nom }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.prenom }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.Q1 }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.Q2 }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.Q3 }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.Q4 }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.Q5 }}
+                    </td>
+                    <td class="text-left">
+                        {{ demand.resultat }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="demands.length == 0" class="text-left">
+            <h3>Aucune demande traités</h3>
+        </div>
+    </div>
+</div>

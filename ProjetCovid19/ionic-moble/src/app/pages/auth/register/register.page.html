@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title text-center>Inscription</ion-title>
+    <!-- <ion-button color="light" (click)="dismissLogin()">Fermer</ion-button> -->
+    <ion-buttons slot="secondary">
+      <ion-button (click)="dismissRegister()">
+        <ion-icon slot="start" name="Close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form #form="ngForm" (ngSubmit)="register(form)" method="post">
+    <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input ngModel name="name"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" ngModel name="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" ngModel name="password"></ion-input>
+    </ion-item>
+    
+    <ion-text color="danger" [hidden]="!error">
+      <span> {{ error }} </span>
+     </ion-text>
+
+    <ion-button type="submit" expand="block" color="primary">S'inscrire</ion-button>
+  </form>
+
+  <p text-center>Se connecter à un compte existant</p>
+  <ion-button expand="block" color="secondary" (click)="loginModal()">Se connecter</ion-button>
+</ion-content>  

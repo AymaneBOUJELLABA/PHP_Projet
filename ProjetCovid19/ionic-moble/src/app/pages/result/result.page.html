@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Résultats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user != undefined">
+    <ion-item>
+      <h1></h1>
+    </ion-item>
+      <div class="card">
+        <div class="card-header">
+          Résultat de votre demande : 
+        </div>
+        <ion-button class="btn btn-light" (click) = "showResult()">
+          Show result
+        </ion-button>
+        <div class="card-body">
+          <div *ngIf= "resultat == 'null' ">
+            Votre demande est en cours de traitement
+          </div>
+          <div *ngIf="resultat == 'positif'">
+            Vous avez êtes testé positif pour Covid10 veuillez consulter votre médecin
+          </div>
+          <div *ngIf="resultat == 'negatif'">
+            Félicitation ! Vous avez êtes testé négatif pour Covid10
+          </div>
+        </div>
+
+      </div>
+  </div>
+</ion-content>

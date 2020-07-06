@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Informations personnelles</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="infos(form)" method="post">
+    <ion-item>
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input ngModel type="text" name="nom"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Prénom</ion-label>
+      <ion-input ngModel type="text" name="prenom"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Age</ion-label>
+      <ion-input ngModel type="number" name="age"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Sexe</ion-label>
+      <ion-select (ionChange)="sexe($event)">
+        <ion-select-option value="femme"> Femme </ion-select-option>
+        <ion-select-option value="homme"> Homme </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Adresse</ion-label>
+      <ion-input ngModel type="text" name="adresse"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Téléphone</ion-label>
+      <ion-input ngModel type="number" name="telephone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ville</ion-label>
+      <ion-select (ionChange)="ville($event)">
+        <ion-select-option value="Tanger"> Tanger </ion-select-option>
+        <ion-select-option value="Tétouan"> Tétouan </ion-select-option>
+        <ion-select-option value="Al Hoceima"> Al Hoceima </ion-select-option>
+        <ion-select-option value="Assilah"> Assilah </ion-select-option>
+        <ion-select-option value="Rabat"> Rabat </ion-select-option>
+        <ion-select-option value="Casablanca"> Casablanca </ion-select-option>
+        <ion-select-option value="Fes"> Fes </ion-select-option>
+        <ion-select-option value="Salé"> Salé </ion-select-option>
+        <ion-select-option value="Laghache"> Laghache </ion-select-option>
+        <ion-select-option value="Marrakech"> Marrakech </ion-select-option>
+        <ion-select-option value="Nador"> Nador </ion-select-option>
+        <ion-select-option value="Chefchaouen"> Chefchaouen </ion-select-option>
+        <ion-select-option value="Safi"> Safi </ion-select-option>
+        <ion-select-option value="Jdida"> Jdida </ion-select-option>
+        <ion-select-option value="Mohammedia"> Mohammedia </ion-select-option>
+        <ion-select-option value="Meknes"> Meknes </ion-select-option>
+        <ion-select-option value="Oujda"> Oujda </ion-select-option>
+        <ion-select-option value="Kénitra"> Kénitra </ion-select-option>
+        <ion-select-option value="Khenifra"> Khenifra </ion-select-option>
+        <ion-select-option value="Agadir"> Aagadir </ion-select-option>
+        <ion-select-option value="BeniMellal"> Beni Mellal </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" color="primary">Valider</ion-button>
+  </form>
+</ion-content>

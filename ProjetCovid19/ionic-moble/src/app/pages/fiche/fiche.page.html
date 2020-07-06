@@ -1,0 +1,194 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Fiche d'investigation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <h4> Veuillez répondre attentivement aux questions suivantes avant de confirmer : </h4>
+    </ion-item>
+    <form (ngSubmit)="addFiche()" method="post">
+      <!-- question 1 -->
+        <ion-list>
+          <ion-radio-group value="test" (ionChange)="test($event)">
+            <ion-list-header>
+              <!-- <ion-label text-wrap>Avez-vous été testé pour le corona virus?</ion-label> -->
+              <ion-text color="primary">
+                <h5> Avez-vous été testé pour le corona virus? </h5>
+              </ion-text>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-radio slot="start" value="Non effectué"></ion-radio>
+              <ion-label text-wrap>Non effectué</ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <ion-radio slot="start" value="Oui, et le résultat du test est négatif"></ion-radio>
+              <ion-label text-wrap>Oui, et le résultat du test est négatif</ion-label>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label text-wrap>Oui et en attente du résultat du test</ion-label>
+              <ion-radio slot="start" value="Oui et en attente du résultat du test"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Oui et le résultat du test est positif</ion-label>
+              <ion-radio slot="start" value="Oui et le résultat du test est positif"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <!-- question 2 -->
+        <ion-list>
+          <ion-radio-group value="isolement" (ionChange)="isolement($event)">
+            <ion-list-header>
+              <ion-text color="primary">
+                <h5>En ce qui concerne l'isolement médical, lequel des éléments suivants s'applique à vous:</h5>
+              </ion-text>
+            </ion-list-header>
+            
+            <ion-item>
+              <ion-label text-wrap>Je suis en isolement médical parce que j'ai rencontré une personne contaminée</ion-label>
+              <ion-radio slot="start" value="Je suis en isolement médical parce que j'ai rencontré une personne contaminée"></ion-radio>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label text-wrap>Je suis en isolement médical parce que j'ai des symptômes</ion-label>
+              <ion-radio slot="start" value="Je suis en isolement médical parce que j'ai des symptômes"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label text-wrap>Je ne suis pas en isolement médical mais j'étais proche de quelqu'un en isolement médical</ion-label>
+              <ion-radio slot="start" value="Je ne suis pas en isolement médical mais j'étais proche de quelqu'un en isolement médical"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Je ne suis pas en isolement médical</ion-label>
+              <ion-radio slot="start" value="Je ne suis pas en isolement médical"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <!-- question 3 -->
+        <ion-list>
+          <ion-radio-group value="situations" (ionChange)="situation($event)">
+            <ion-list-header>
+              <ion-text color="primary">
+                <h5>Avez-vous actuellement ou avez-vous déjà vécu l'une des situations suivantes :</h5>
+              </ion-text>
+            </ion-list-header>
+            
+            <ion-item>
+              <ion-label text-wrap>Insuffisance cardiaque chronique</ion-label>
+              <ion-checkbox slot="start" value="Insuffisance cardiaque chronique"></ion-checkbox>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label text-wrap>Cas précédent de crise cardiaque</ion-label>
+              <ion-checkbox slot="start" value="Cas précédent de crise cardiaque"></ion-checkbox>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label text-wrap>Diabète</ion-label>
+              <ion-checkbox slot="start" value="Diabète"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Hypertension artérielle</ion-label>
+              <ion-checkbox slot="start" value="Hypertension artérielle"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Maladie rénale chronique</ion-label>
+              <ion-checkbox slot="start" value="Maladie rénale chronique"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Maladie pulmonaire chronique</ion-label>
+              <ion-checkbox slot="start" value="Maladie pulmonaire chronique"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Le cancer</ion-label>
+              <ion-checkbox slot="start" value="Le cancer"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Système immunitaire affaibli</ion-label>
+              <ion-checkbox slot="start" value="Système immunitaire affaibli"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Prenez des médicaments anti-immuns</ion-label>
+              <ion-checkbox slot="start" value="Prenez des médicaments anti-immuns"></ion-checkbox>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <!-- question 4 -->
+        <ion-list>
+          <ion-radio-group value="symptomes" (ionChange)="symptome($event)">
+            <ion-list-header>
+              <ion-text color="primary">
+                <h5>Avez-vous eu les symptômes suivants aujourd'hui? <br> Veuillez les cocher si c'est le cas :</h5>
+              </ion-text>
+            </ion-list-header>
+            
+            <ion-item>
+              <ion-label text-wrap>Fièvre supérieure à 38 degrés</ion-label>
+              <ion-checkbox slot="start" value="Fièvre supérieure à 38 degrés"></ion-checkbox>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label text-wrap>Difficulté à respirer</ion-label>
+              <ion-checkbox slot="start" value="Difficulté à respirer"></ion-checkbox>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label text-wrap>Maux d'estomac</ion-label>
+              <ion-checkbox slot="start" value="Maux d'estomac"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Douleurs musculaires</ion-label>
+              <ion-checkbox slot="start" value="Douleurs musculaires"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Fatigue ou faiblesse importante</ion-label>
+              <ion-checkbox slot="start" value="Fatigue ou faiblesse importante"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Congestion nasale ou nez qui coule</ion-label>
+              <ion-checkbox slot="start" value="Congestion nasale ou nez qui coule"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Inflammation de la gorge</ion-label>
+              <ion-checkbox slot="start" value="Inflammation de la gorge"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Toux sèche</ion-label>
+              <ion-checkbox slot="start" value="Toux sèche"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label text-wrap>Toux Avec mucus</ion-label>
+              <ion-checkbox slot="start" value="Toux Avec mucus"></ion-checkbox>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <!-- question 5 -->
+        <ion-item>
+          <ion-label text-wrap position="floating" color="primary"> Depuis combien du temps avez-vous toussé ? </ion-label>
+          <ion-input type="number" [(ngModel)]="tousse" name="tousse"></ion-input>
+        </ion-item>
+    
+      <ion-button type="submit" expand="block" color="primary"> Confirmer </ion-button>
+    </form>
+  </ion-content>

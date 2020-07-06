@@ -1,0 +1,34 @@
+<form class="from" (submit)="add(commentAuthor.value,commentText.value); commentAuthor.value=''; commentText.value='';">
+    <div class="form-group">
+        <input #commentAuthor type="text" class="form-control" placeholder="Comment author">
+        <input #commentText type="text" class="form-control" placeholder="Comment text">
+    </div>
+    <input type="submit" value="SUBMIT" class="btn btn-success btn-lg btn-block">
+</form>
+
+
+<table class="table">
+    <tr *ngFor='let comment of Comments'>
+        <td class="text-left">
+            <a (click)= "edit(comment)">
+                <span *ngIf="comment!== editComment"> {{ comment.author }}</span>
+                <input *ngIf="comment== editComment" [(ngModel)] = "comment.author" (blur)="update()" (keyup.enter)="update()">
+            </a>
+        </td>
+        <td class="text-left">
+            <a (click)= "edit(comment)">
+                <span *ngIf="comment!== editComment"> {{ comment.text }}</span>
+                <input *ngIf="comment== editComment" [(ngModel)] = "comment.text" (blur)="update()" (keyup.enter)="update()">
+            </a>
+        </td>
+        <td class="text-right">
+            <button class="btn btn-danger" (click)="delete(comment)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>
+
+<div class="card card-body bg-light text-center">
+    <span class="small">Click on item to edit</span>
+</div>

@@ -1,0 +1,7 @@
+{
+  "name": "Cov19FrontendIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
