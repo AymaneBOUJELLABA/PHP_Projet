@@ -29,7 +29,7 @@ export class FichePage implements OnInit {
       this.fiche.situation = "";
       this.fiche.symptome = "";
       this.fiche.tempsTousse = 0;
-      this.user = this.authService.getUser();
+      this.user = this.authService.userValue;
 
   }
 

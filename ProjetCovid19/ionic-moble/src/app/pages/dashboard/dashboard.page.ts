@@ -1,6 +1,6 @@
 import { AlertService } from 'src/app/services/alert.service';
 import { Component, OnInit } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 
@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user';
 })
 export class DashboardPage implements OnInit {
 
-  user: User;
+  user: User = undefined;
   nbreFiche: any;
   reponsesFiche = new Array();
   hasInfo = '';
@@ -20,16 +20,17 @@ export class DashboardPage implements OnInit {
               private authService: AuthService,
               private navCtrl: NavController,
               private alertService: AlertService,
+              private modalController: ModalController,
               ) { 
     this.menu.enable(true);
-
+    this.user = this.authService.userValue;
   }
 
 
-  ngOnInit() {
-
-    this.user = this.authService.getUser();
-
+  ngOnInit()
+  {
+    this.user = this.authService.userValue;
+    
     this.authService.hasInfos(this.authService.userValue.id).subscribe(
       data => {
         this.hasInfo = data['hasInfos'];
@@ -39,6 +40,7 @@ export class DashboardPage implements OnInit {
           {
             this.alertService.presentToast("Vous n'avez pas saisie vos informations");
             this.navCtrl.navigateRoot('/infos');
+            this.modalController.dismiss()
           }
       },
       err => {
@@ -46,6 +48,13 @@ export class DashboardPage implements OnInit {
         
       }
     )  
-   
+    if(this.user==undefined)
+    {
+      this.alertService.presentToast("Vous vous n'êtes pas connecter");
+      this.navCtrl.navigateRoot('/landing');
+      this.modalController.dismiss()
+    }
   }
+
+  
 }

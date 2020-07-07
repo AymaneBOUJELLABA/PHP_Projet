@@ -39,11 +39,14 @@ export class LandingPage implements OnInit {
 
     UserIsConnected()
     {
-      if(this.authService.userValue)
+      
+      if(this.authService.userValue != undefined)
       {
         this.IsConnected = true;
-        this.alertService.presentToast("Vous etes deja Connecté !");
         this.navCtrl.navigateRoot('/dashboard');
+        this.alertService.presentToast('Vous êtes dèja connecté');
+        this.modalController.dismiss();
+        
       }
 
     }

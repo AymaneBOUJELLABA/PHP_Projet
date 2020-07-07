@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, NavController } from '@ionic/angular';
+import { Platform, NavController, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
@@ -20,16 +20,6 @@ export class AppComponent {
       url: '/dashboard',
       icon: 'home'
     },
-    // {
-    //   title: 'Home',
-    //   url: '/home',
-    //   icon: 'home'
-    // },
-    // {
-    //   title: 'fiche',
-    //   url: '/fiche',
-    //   icon: 'home'
-    // },
   ];
 
   constructor(
@@ -39,7 +29,7 @@ export class AppComponent {
     private authService: AuthService,
     private navCtrl: NavController,
     private alertService: AlertService,
-    private menu: MenuController
+    private modalController: ModalController,
   ) {
     this.initializeApp();
   }
@@ -59,14 +49,13 @@ export class AppComponent {
   logout() {
     this.authService.logout().subscribe(
       data => {
-        this.alertService.presentToast(data['message']);        
+        this.alertService.presentToast('Vous etes déconnecté');     
+        this.navCtrl.navigateRoot('/landing');   
+        this.modalController.dismiss();
       },
       error => {
         console.log(error);
       },
-      () => {
-        this.navCtrl.navigateRoot('landing');
-      }
     );
   }
 

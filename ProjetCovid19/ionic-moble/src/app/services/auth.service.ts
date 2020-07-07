@@ -145,12 +145,11 @@ export class AuthService {
     )
     .pipe(
       tap(data => {
-        localStorage.clear();
+        localStorage.removeItem('user');
         this.storage.remove("token");
         this.isLoggedIn = false;
-        delete this.token;
-        delete this.us;
-        delete this.nbreFiche;
+        this.token = undefined;
+        this.us = undefined;
         this.reponsesFiche.length = 0;
         return data;
       })

@@ -30,7 +30,10 @@ export class InfosPage implements OnInit {
       this.userInfos.telephone = "";
       this.userInfos.ville = "";
 
-      this.user_id = this.authService.getUser().id;
+      if(this.authService.userValue)
+      {
+        this.user_id = this.authService.getUser().id;
+      }
   }
 
   sexe(value)

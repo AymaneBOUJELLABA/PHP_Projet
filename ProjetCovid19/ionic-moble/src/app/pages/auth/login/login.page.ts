@@ -21,7 +21,8 @@ export class LoginPage implements OnInit {
     private alertService: AlertService
   ) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
   }
 
   // Dismiss Login Modal
@@ -43,33 +44,16 @@ export class LoginPage implements OnInit {
     this.authService.login(form.value.email, form.value.password).subscribe(
       data => {
         this.alertService.presentToast("Connecté !");
+        this.navCtrl.navigateRoot('/dashboard');
+        this.dismissLogin();
       },
       error => {
         // this.alertService.presentToast(error.error.error);
         this.handleError(error);
         console.log(error);
       },
-      () => {
-        this.dismissLogin();
-
-      }
     );
-    
-    this.authService.hasInfos(this.authService.userValue.id).subscribe(
-      data => {
-        this.hasInfo = data['hasInfos'];
-        if(this.hasInfo=='true')
-          this.navCtrl.navigateRoot('/dashboard');
-        if(this.hasInfo=='false')
-          {
-            this.navCtrl.navigateRoot('/infos');
-          }
-      },
-      err => {
-        console.log(err);
-        
-      }
-    )    
+     
   }
 
   // ---- Affichage du message d'erreur ----
