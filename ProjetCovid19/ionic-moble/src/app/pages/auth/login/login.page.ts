@@ -43,16 +43,17 @@ export class LoginPage implements OnInit {
   {
     this.authService.login(form.value.email, form.value.password).subscribe(
       data => {
-        this.alertService.presentToast("Connecté !");
+        this.alertService.presentToast("vous êtes connecté");
         this.navCtrl.navigateRoot('/dashboard');
         this.dismissLogin();
       },
       error => {
-        // this.alertService.presentToast(error.error.error);
         this.handleError(error);
         console.log(error);
       },
     );
+    this.navCtrl.navigateRoot('/dashboard');
+    this.dismissLogin();
      
   }
 

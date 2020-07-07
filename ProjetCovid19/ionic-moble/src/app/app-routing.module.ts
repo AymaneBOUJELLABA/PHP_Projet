@@ -36,19 +36,23 @@ const routes: Routes = [
   },
   {
     path: 'fiche',
-    loadChildren: () => import('./pages/fiche/fiche.module').then( m => m.FichePageModule)
+    loadChildren: () => import('./pages/fiche/fiche.module').then( m => m.FichePageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'infos',
-    loadChildren: () => import('./pages/infos/infos.module').then( m => m.InfosPageModule)
+    loadChildren: () => import('./pages/infos/infos.module').then( m => m.InfosPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'result',
-    loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule)
+    loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'carte',
-    loadChildren: () => import('./pages/carte/carte.module').then( m => m.CartePageModule)
+    loadChildren: () => import('./pages/carte/carte.module').then( m => m.CartePageModule),
+    canActivate: [AuthGuard] 
   },
   // { path: 'list', 
   // loadChildren: './list/list.module#ListPageModule', 

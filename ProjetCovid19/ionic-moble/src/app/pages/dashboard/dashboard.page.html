@@ -9,7 +9,27 @@
 
 <ion-content padding>
   <div *ngIf="user != undefined">
-    <h1> &nbsp;&nbsp; Welcome {{ user.name }} </h1>
+    <div class="card">
+      <div class="card-header">
+        Bienvenue {{ user.name }} dans l'application Covid19
+      </div>
+      <div *ngIf="info!=undefined" class="card-body">
+        <h3> Vos informations :</h3>
+      
+          Prenom :  {{ info['prenom'] }} <br>
+        
+          Nom :  {{ info['nom'] }}  <br>
+          
+          Sexe :  {{ info['sexe'] }}  <br>
+        
+          Age :  {{ info['age'] }}  <br>
+        
+          Adresse :  {{ info['adresse'] }}  <br>
+          
+          N° Tél :  {{ info['telephone'] }} <br>
+          
+          Ville :  {{ info['ville'] }}  <br>
+      </div>
+    </div>
   </div>
-
 </ion-content>

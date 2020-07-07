@@ -148,25 +148,13 @@ export class AuthService {
         localStorage.removeItem('user');
         this.storage.remove("token");
         this.isLoggedIn = false;
-        this.token = undefined;
-        this.us = undefined;
-        this.reponsesFiche.length = 0;
+        this.token = undefined; //Token envoyé de La Backend (Laravel) lors du login
+        this.us = undefined; //L'utilisateur connecté
+        this.userResult = undefined;
         return data;
       })
     )
   }
-
-  // user() {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': this.token["token_type"]+" "+this.token["access_token"]
-  //   });
-  //   return this.http.get<User>(this.env.API_URL + 'profile', { headers: headers })
-  //   .pipe(
-  //     tap(user => {
-  //       return user;
-  //     })
-  //   )
-  // }
 
   getToken() {
     return this.storage.get('token').then(

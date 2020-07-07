@@ -21,6 +21,7 @@ export class LandingPage implements OnInit {
     private navCtrl: NavController,
   ) { 
       this.menu.enable(false);
+      this.UserIsConnected();
     }
 
     ionViewWillEnter() {
@@ -45,7 +46,6 @@ export class LandingPage implements OnInit {
         this.IsConnected = true;
         this.navCtrl.navigateRoot('/dashboard');
         this.alertService.presentToast('Vous êtes dèja connecté');
-        this.modalController.dismiss();
         
       }
 
@@ -58,6 +58,7 @@ export class LandingPage implements OnInit {
     }
 
     async login() {
+      this.modalController.dismiss();
       const loginModal = await this.modalController.create({
         component: LoginPage,
       });

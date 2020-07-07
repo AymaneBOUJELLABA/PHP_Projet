@@ -51,7 +51,6 @@ export class AppComponent {
       data => {
         this.alertService.presentToast('Vous etes déconnecté');     
         this.navCtrl.navigateRoot('/landing');   
-        this.modalController.dismiss();
       },
       error => {
         console.log(error);

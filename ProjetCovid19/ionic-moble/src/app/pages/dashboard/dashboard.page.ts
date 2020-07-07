@@ -15,6 +15,7 @@ export class DashboardPage implements OnInit {
   nbreFiche: any;
   reponsesFiche = new Array();
   hasInfo = '';
+  info : any = undefined;
 
   constructor(private menu: MenuController,
               private authService: AuthService,
@@ -23,16 +24,32 @@ export class DashboardPage implements OnInit {
               private modalController: ModalController,
               ) { 
     this.menu.enable(true);
-    this.user = this.authService.userValue;
+
+    if(this.authService.userValue != undefined)
+    {
+      this.user = this.authService.userValue;
+      this.authService.hasInfos(this.authService.userValue.id).subscribe(
+      data => {
+        this.info = data['info'];
+      },
+      err => {
+        console.log(err);
+        
+      }
+      )
+    }
+    
   }
 
 
   ngOnInit()
   {
     this.user = this.authService.userValue;
-    
+    this.info = undefined;
     this.authService.hasInfos(this.authService.userValue.id).subscribe(
       data => {
+        this.info = data['info'];
+        console.log(this.info);
         this.hasInfo = data['hasInfos'];
         if(this.hasInfo=='true')
           this.navCtrl.navigateRoot('/dashboard');
@@ -40,7 +57,6 @@ export class DashboardPage implements OnInit {
           {
             this.alertService.presentToast("Vous n'avez pas saisie vos informations");
             this.navCtrl.navigateRoot('/infos');
-            this.modalController.dismiss()
           }
       },
       err => {

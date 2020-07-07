@@ -59,7 +59,10 @@ class UserController extends Controller
                 'email' => ['The provided credentials are incorrect!.'],
             ]);
         }
-    
+        if ($user->type != "admin")
+        {
+            return response('acees denied', 401);
+        }
         $token = $user->createToken($request->device_name)->plainTextToken;
     
         $response = [

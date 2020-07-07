@@ -23,7 +23,7 @@ class InfoController extends Controller
         $infos = User::find($id)->info;
         
         if($infos)
-            return response(['hasInfos' => "true"]);
+            return response(['info' => $infos ,'hasInfos' => "true"]);
         else
             return response(['hasInfos' => "false"]);
     }

@@ -32,7 +32,9 @@ export class InfosPage implements OnInit {
 
       if(this.authService.userValue)
       {
-        this.user_id = this.authService.getUser().id;
+        console.log(this.authService.userValue);
+        
+        this.user_id = this.authService.userValue.id;
       }
   }
 
@@ -52,16 +54,16 @@ export class InfosPage implements OnInit {
       data => {
         this.alertService.presentToast("Vos informations sont bien enregistrées !");
         console.log(data);
-        
       },
       error => {
         console.log(error);
       },
     )
-      this.navCtrl.navigateRoot('/dashboard');
+    this.navCtrl.navigateRoot('/dashboard');
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.user = this.authService.getUser();
   }
 
